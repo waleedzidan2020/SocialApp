@@ -69,7 +69,7 @@ class SocialLayout extends StatelessWidget {
 
         if (state is SignOutSuccessState) {
           CacheHelper.RemoveToken("uid").then((value) {
-
+            SignOutByGmail();
             IsDataSuccess=false;
             print("Removed");
           });
