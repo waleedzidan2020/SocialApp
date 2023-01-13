@@ -3,8 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:socialapp/modules/Social_login/cubit/state.dart';
 
-import 'package:socialapp/modules/shop_login/cubit/state.dart';
 import 'package:socialapp/shared/components/constants.dart';
 
 class SocialLoginCubit extends Cubit<ShopLogInStates> {

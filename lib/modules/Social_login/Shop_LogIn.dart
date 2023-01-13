@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:socialapp/layout/social_app/cubit/cubit.dart';
 
-import 'package:socialapp/modules/shop_register/Shop_Register.dart';
+
 import 'package:socialapp/shared/components/constants.dart';
 import 'package:socialapp/shared/network/local/cashe_helper.dart';
 
 import '../../layout/social_app/social_layout.dart';
 import '../../shared/components/components.dart';
 
+import '../Social_register/Shop_Register.dart';
 import 'cubit/cubit.dart';
 import 'cubit/state.dart';
 

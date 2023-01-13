@@ -7,8 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:socialapp/models/shop_login/shop_login.dart';
 import 'package:socialapp/models/shop_register/shop_register.dart';
-import 'package:socialapp/modules/shop_register/cubit/States.dart';
 import 'package:socialapp/shared/components/constants.dart';
+
+import 'States.dart';
 
 
 
