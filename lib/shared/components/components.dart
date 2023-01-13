@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 
 Widget LogInButton(
@@ -174,4 +175,14 @@ void MessageShop ({@required String? message,Color? BackgroundColor}){
       backgroundColor: BackgroundColor,
       textColor: Colors.white,
       fontSize: 16.0);
+}
+
+
+
+
+
+void SignOutByGmail() async {
+  GoogleSignIn acount = GoogleSignIn(scopes: ["email"]);
+
+  await acount.signOut();
 }

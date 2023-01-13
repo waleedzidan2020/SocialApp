@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:socialapp/layout/social_app/cubit/cubit.dart';
 
-
 import 'package:socialapp/shared/components/constants.dart';
 import 'package:socialapp/shared/network/local/cashe_helper.dart';
 
@@ -23,7 +22,7 @@ class ShopLogInScreen extends StatelessWidget {
     final regs = RegExp(
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
     GlobalKey<FormState> FormKey = GlobalKey<FormState>();
-    return BlocConsumer<SocialLoginCubit,ShopLogInStates >(
+    return BlocConsumer<SocialLoginCubit, ShopLogInStates>(
       builder: (context, state) {
         var cubit = SocialLoginCubit.get(context);
         //if(state is DataSuccessLoginState){
@@ -135,7 +134,7 @@ class ShopLogInScreen extends StatelessWidget {
                           fun: () {
                             if (FormKey.currentState!.validate()) {
                               if (regs.hasMatch(emailcontroller.text)) {
-                                cubit.UserLogin(emailcontroller.text,
+                                cubit.SignIn(emailcontroller.text,
                                     PasswordController.text);
                               } else {}
                             }
@@ -144,6 +143,57 @@ class ShopLogInScreen extends StatelessWidget {
                         ),
                         fallback: (context) =>
                             Center(child: CircularProgressIndicator()),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                height: 1.0,
+                                color: Colors.grey,
+                                width: double.infinity,
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: Text("or"),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                height: 1.0,
+                                color: Colors.grey,
+                                width: double.infinity,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      MaterialButton(
+                        color: Colors.white,
+                        elevation: 0.0,
+                        onPressed: () {
+                          cubit
+                              .StoreInFireBaseAuthenticationAndCreateAcountInFireBaseStore();
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CircleAvatar(
+                              backgroundImage:
+                                  AssetImage("assets/images/GoogleIcon.png"),
+                              radius: 15,
+                              backgroundColor: Colors.white,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text("Log In With Google"),
+                          ],
+                        ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -181,14 +231,37 @@ class ShopLogInScreen extends StatelessWidget {
             ),
           ));
 
-              IsDataSuccess=true;
-          CacheHelper.SaveData("uid", state.uid).then((value){
+          IsDataSuccess = true;
+          CacheHelper.SaveData("uid", state.uid).then((value) {
             NaviatAndPush(context, SocialLayout());
 
-            UserId= state.uid;
-
+            UserId = state.uid;
           });
+        } else if (state is DataErrorState) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text('${cubit.ErorrMessage}'),
+            backgroundColor: Colors.red,
+            duration: Duration(
+              seconds: 3,
+            ),
+          ));
+        }
 
+        if (state is DataCreateSuccessByGmailState) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text("Login Successfully"),
+            backgroundColor: Colors.green,
+            duration: Duration(
+              seconds: 3,
+            ),
+          ));
+
+          IsDataSuccess = true;
+          CacheHelper.SaveData("uid", state.uid).then((value) {
+            NaviatAndPush(context, SocialLayout());
+
+            UserId = state.uid;
+          });
         } else if (state is DataErrorState) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text('${cubit.ErorrMessage}'),
