@@ -21,11 +21,13 @@ import 'package:socialapp/modules/chats/ChatsScreen.dart';
 import 'package:socialapp/modules/home/feedScreen.dart';
 import 'package:socialapp/modules/posts/postScreen.dart';
 import 'package:socialapp/modules/settings/settingScreen.dart';
-import 'package:socialapp/modules/shop_login/Shop_LogIn.dart';
+
 import 'package:socialapp/modules/users/UserScreen.dart';
 import 'package:socialapp/shared/components/components.dart';
 import 'package:socialapp/shared/components/constants.dart';
 import 'package:socialapp/shared/styles/iconly_broken.dart';
+
+import '../../../modules/Social_login/Shop_LogIn.dart';
 
 class SocialLayOutCubit extends Cubit<SocialLayOutStates> {
   SocialLayOutCubit() : super(SocialLayOutInit());

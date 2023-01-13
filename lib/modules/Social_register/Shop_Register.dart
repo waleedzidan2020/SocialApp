@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:socialapp/modules/shop_register/cubit/States.dart';
-import 'package:socialapp/modules/shop_register/cubit/cubit.dart';
 import 'package:socialapp/shared/components/components.dart';
 
+import '../Social_login/Shop_LogIn.dart';
+import 'cubit/States.dart';
+import 'cubit/cubit.dart';
 
-import '../shop_login/Shop_LogIn.dart';
+
 
 class ShopRegisterScreen extends StatelessWidget {
   GlobalKey<FormState> keyRegister = GlobalKey<FormState>();
